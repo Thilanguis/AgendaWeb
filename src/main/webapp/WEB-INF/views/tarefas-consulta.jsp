@@ -13,11 +13,14 @@
 </head>
 <body>
 
+	<!-- Menu do sistema -->
+	<jsp:include page="/WEB-INF/views/components/menu.jsp"/>
+
 	<div class="container mt-4">
 		<div class="row mb-3">
 			<div class="col-md-6">
 				<h5>
-					<strong>AgendaWeb</strong>Consulta de tarefas
+					<strong>AgendaWeb </strong>Consulta de tarefas
 				</h5>
 				Pesquise as tarefas desejadas:
 			</div>
@@ -76,6 +79,8 @@
 		</table>
 
 	</div>
+	
+	<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

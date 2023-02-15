@@ -1,5 +1,9 @@
 package br.com.cotiinformatica.controller;
 
+import java.lang.ProcessBuilder.Redirect;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,42 +31,60 @@ public class LoginController {
 
 	@RequestMapping(value = "/autenticar-usuario", method = RequestMethod.POST)
 
-	public ModelAndView autenticarUsuario(LoginModel model) {
+	public ModelAndView autenticarUsuario(LoginModel model, HttpServletRequest request) {
 
 		ModelAndView modelAndView = new ModelAndView("login");
-		
+
 		try {
-			
-			//consultar o usuário no banco de dados através do email e da senha
+
+			// consultar o usuário no banco de dados através do email e da senha
 			UsuarioRepository usuarioRepository = new UsuarioRepository();
 			Usuario usuario = usuarioRepository.find(model.getEmail(), model.getSenha());
-			
+
 			if (usuario != null) {
-				
-				modelAndView.addObject("mensagem", "Olá " + usuario.getNome() + ", seja bem-vindo a AgendaWeb!");
-				modelAndView.setViewName("tarefas-consulta");
-				
-			}
-			else {
-				
+
+				// Armazenar os dados do usuário em sessão
+				request.getSession().setAttribute("usuario_auth", usuario);
+
+				// redirecionamento
+				modelAndView.setViewName("redirect:tarefas-consulta");
+
+			} else {
+
 				modelAndView.addObject("mensagem", "Acesso negado, e-mail ou senha inválidos.");
-				
+
 			}
 
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 
 			modelAndView.addObject("mensagem", "Ocorreu um erro" + e.getMessage());
-			
+
 		}
-		
-		//Se o usuário estiver retornando para a página de login
-		//Criamos uma nova instância da classe LoginModel
+
+		// Se o usuário estiver retornando para a página de login
+		// Criamos uma nova instância da classe LoginModel
 		if (modelAndView.getViewName().equals("login")) {
-			
-			modelAndView.addObject("model", new LoginModel());
-			
+
+			modelAndView.addObject("model", new LoginModel()); // retorna página em branco e apaga tudo
+			// modelAndView.addObject("model", model); // Não apaga a senha e id no login
+
 		}
+
+		return modelAndView;
+
+	}
+
+	@RequestMapping(value = "/logout")
+
+	public ModelAndView logout(HttpServletRequest request) {
+
+		// apagar uma variável de uma sessão
+		request.getSession().removeAttribute("usuario_auth");
+
+		// apagar todas as variáveis gravados na sessão
+		request.getSession().invalidate();
+
+		ModelAndView modelAndView = new ModelAndView("redirect:/");
 
 		return modelAndView;
 
