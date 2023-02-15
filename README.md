@@ -11,7 +11,7 @@
 7. Crud no banco de dados
 8. Tratamento de campos backend e jquery
 
-### Conteúdo das aulas de orientação a objetos em JAVA
+### Frameworks e bibliotecas utilizadas no projeto:
 1. LOMBOK
 2. JSP e TagLibraries
 3. JDBC
