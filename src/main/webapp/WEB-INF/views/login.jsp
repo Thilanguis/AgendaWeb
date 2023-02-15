@@ -57,9 +57,13 @@
 							</div>
 						</div>
 						
+						<!-- 
 						<div class="text-center text-danger mb-3">
 							<strong>${ mensagem }</strong>
 						</div>
+						 -->
+						 
+						 <jsp:include page="/WEB-INF/views/components/notifications.jsp"/>
 
 						<div class="mb-3">
 							<div class="d-grid">

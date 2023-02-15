@@ -34,9 +34,10 @@ public class TarefasCadastroController {
 		try {
 			
 			//ler usuário gravado na sessão
-			Usuario usuario = (Usuario) request.getSession().getAttribute("usuario_auth");
+			Usuario usuario = (Usuario) request.getSession().getAttribute("usuario_auth"); //casting (Usuario)
 			
 			Tarefa tarefa = new Tarefa();
+			
 			tarefa.setNome(model.getNome());
 			tarefa.setData(DataHelper.formatToDate(model.getData()));
 			tarefa.setHora(model.getHora());

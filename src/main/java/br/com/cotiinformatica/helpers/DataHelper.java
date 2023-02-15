@@ -9,7 +9,7 @@ public class DataHelper {
 
 	// método para formar e retornar uma data JAVa como yyy-MM-dd
 
-	public static String formatData(Date data) {
+	public static String formatToString(Date data) {
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 

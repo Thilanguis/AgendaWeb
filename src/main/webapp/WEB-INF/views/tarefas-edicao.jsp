@@ -13,6 +13,9 @@
 
 	<!-- Menu do sistema -->
 	<jsp:include page="/WEB-INF/views/components/menu.jsp"/>
+	
+	<!-- Notificações do sistema -->
+	<jsp:include page="/WEB-INF/views/components/notifications.jsp"/>
 
 	<div class="container mt-4">
 		<div class="row mb-3">
