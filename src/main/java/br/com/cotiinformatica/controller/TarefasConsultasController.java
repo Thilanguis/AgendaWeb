@@ -70,4 +70,34 @@ public class TarefasConsultasController {
 		return modelAndView;
 
 	}
+	
+	@RequestMapping(value = "/tarefas-exclusao", method = RequestMethod.GET)
+	
+	public ModelAndView excluirTarefa(Integer id, HttpServletRequest request) {
+		
+		 ModelAndView modelandview = new ModelAndView("tarefas-consulta");
+
+		 try {
+			 
+			 Usuario usuario = (Usuario) request.getSession().getAttribute("usuario_auth");
+			 
+			 Tarefa tarefa = new Tarefa();
+			 
+			 tarefa.setIdTarefa(id);
+			 tarefa.setUsuario(usuario);
+			 
+			 TarefaRepository tarefaRepository = new TarefaRepository();
+			 tarefaRepository.delete(tarefa);
+			 
+			 modelandview.addObject("mensagem", "Tarefa excluida com sucesso!");
+			
+		} catch (Exception e) {
+			
+			modelandview.addObject("mensagem", "Ocorreu um erro: " + e.getMessage());
+			
+		}
+		 
+		modelandview.addObject("model", new TarefaConsultaModel());
+		return modelandview;
+	}
 }

@@ -77,7 +77,7 @@ public class TarefaRepository implements ITarefaRepository {
 		Connection connection = ConnectionFactory.getConnection();
 		
 		PreparedStatement statement = connection.prepareStatement(
-				"update tarefa(nome=?, data=?, hora=?, descricao=?, prioridade=? where idtarefa=? and idusuario=?) ");
+				"update tarefa set nome=?, data=?, hora=?, descricao=?, prioridade=? where idtarefa=? and idusuario=? ");
 
 		statement.setString(1, tarefa.getNome());
 		statement.setString(2, DataHelper.formatToString(tarefa.getData()));
@@ -97,7 +97,7 @@ public class TarefaRepository implements ITarefaRepository {
 		Connection connection = ConnectionFactory.getConnection();
 		
 		PreparedStatement statement = connection.prepareStatement(
-				"delete from tarefa where idtarefa=? and idusuario=?) ");
+				"delete from tarefa where idtarefa=? and idusuario=? ");
 
 		statement.setInt(1, tarefa.getIdTarefa());
 		statement.setInt(2, tarefa.getUsuario().getIdUsuario());
@@ -112,7 +112,7 @@ public class TarefaRepository implements ITarefaRepository {
 		Connection connection = ConnectionFactory.getConnection();
 
 		PreparedStatement statement = connection.prepareStatement(
-				"select * from tarefa where idtarefa = ? and ? and idusuario = ? ");
+				"select * from tarefa where idtarefa = ? and idusuario = ? ");
 
 		statement.setInt(1, idTarefa);
 		statement.setInt(2, idUsuario);
