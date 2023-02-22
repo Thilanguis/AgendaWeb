@@ -34,22 +34,23 @@
 
 						<div class="mb-3">
 							<label>Email de acesso:</label>
-							<form:input path="model.email" name="email" id="email" action="" class="form-control"
-								type="text" placeholder="Digi te o seu email aqui" />
+							<form:input path="model.email" name="email" id="email" action="" class="form-control" type="text" placeholder="Digite o seu email aqui" />
 						</div>
 
 						<div class="mb-3">
 							<div class="d-grid">
-								<input type="submit" value="Recuperar senha"
-									class="btn btn-success" />
+								<input type="submit" value="Recuperar senha" class="btn btn-success" />
 							</div>
 						</div>
 
 						<div class="mb-3">
 							<div class="d-grid">
-								<a href="/agendaweb/" class="btn btn-light"> <strong>Voltar</strong>
-								</a>
+								<a href="/agendaweb/" class="btn btn-light"> <strong>Voltar</strong></a>
 							</div>
+						</div>
+
+						<div class="text-center">
+							<strong>${ mensagem }</strong> 
 						</div>
 
 					</form>
